@@ -5,7 +5,7 @@ class App extends Component {
   
   constructor(props){
     super(props)
-    this.state = {'foldersOnIssuu': []}
+    this.state = {'foldersOnIssuu': [], 'bookmarksOnIssuu': [], 'activeDocument': {}}
   }
 
   getPublications = () => {
@@ -25,10 +25,38 @@ class App extends Component {
     })
   }
 
+  getListOfBookmarks = (folderId) =>{
+    let additional_params = {
+      format: 'json',
+      folderId: folderId
+    }
+    let params = new api.create_base_parameters_obj('issuu.bookmarks.list', api.api_key, additional_params)
+    let api_call = api.add_custom_params(params)
+    api.call_issuu(api_call).then((res)=>{
+      this.setState({'bookmarksOnIssuu': res.data.rsp._content.result._content})
+      console.log(this.state)
+    }).catch((err)=>{console.log(err)})
+  }
+
+  getListOfDocumentEmbeds = (documentId) =>{
+    let additional_params = {
+      format: 'json',
+      documentId: documentId
+    }
+    let params = new api.create_base_parameters_obj('issuu.document_embeds.list', api.api_key, additional_params)
+    const api_call = api.add_custom_params(params)
+    api.call_issuu(api_call).then((res)=>{
+      this.setState({activeDocument: res.data.rsp._content.result._content[0].documentEmbed})
+      console.log(this.state)
+    }).catch((err)=>{
+        console.log(err)
+    })
+  }
+
   render() {
     return (
       <div className="ui container">
-          <PubsList getPublications={this.getPublications} folders={this.state.foldersOnIssuu}></PubsList>
+          <PubsList getPublications={this.getPublications} folders={this.state.foldersOnIssuu} bookmarks={this.state.bookmarksOnIssuu} getListOfBookmarks={this.getListOfBookmarks} getListOfDocumentEmbeds={this.getListOfDocumentEmbeds}></PubsList>
       </div>
     );
   }

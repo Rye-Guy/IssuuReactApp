@@ -5,7 +5,7 @@ class PubFolder extends React.Component{
         console.log(this.props)
         return(
             
-            <div>   
+            <div onClick={()=>this.props.getListOfBookmarks(this.props.dataId)} className="ui primary button" data-id={this.props.dataId}>   
                 {this.props.folderName}
             </div>
         );
