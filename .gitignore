@@ -14,7 +14,7 @@
 
 # misc
 .DS_Store
-.hide-me.js
+hide-me.js
 yarn.lock
 .env.local
 .env.development.local
