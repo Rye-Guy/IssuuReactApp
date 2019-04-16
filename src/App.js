@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import api from './api/coolstuff.js';
 import PubsList from './components/PubsList';
+import ActivePub from './components/ActivePub';
+
 class App extends Component {
   
   constructor(props){
@@ -53,9 +55,21 @@ class App extends Component {
     })
   }
 
+  getHTMLForDocumentEmbed = (id) =>{
+    let additional_params = {
+      embedId: id
+    }
+    let params = new api.create_base_parameters_obj('issuu.document_embed.get_html_code', api.api_key, additional_params)
+    const api_call = api.add_custom_params(params)
+    api.call_issuu(api_call).then((res)=>{
+      console.log(res)
+    }).catch((err)=>{console.log(err)})
+  }
+
   render() {
     return (
       <div className="ui container">
+          <ActivePub activePub={this.state.activeDocument} getHTMLForDocumentEmbed={this.getHTMLForDocumentEmbed}></ActivePub>
           <PubsList getPublications={this.getPublications} folders={this.state.foldersOnIssuu} bookmarks={this.state.bookmarksOnIssuu} getListOfBookmarks={this.getListOfBookmarks} getListOfDocumentEmbeds={this.getListOfDocumentEmbeds}></PubsList>
       </div>
     );

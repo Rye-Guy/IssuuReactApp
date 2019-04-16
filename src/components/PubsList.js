@@ -15,14 +15,14 @@ class PubsList extends React.Component{
         })
         const pubBookmarks = this.props.bookmarks.map((bookmark)=>{
             console.log(bookmark)
-            return <PubBookmark key={bookmark.bookmark.documentId} title={bookmark.bookmark.title} createdAt={bookmark.bookmark.created} description={bookmark.bookmark.description} dataId={bookmark.bookmark.documentId} getListOfDocumentEmbeds={this.props.getListOfDocumentEmbeds} ></PubBookmark>
+            return <PubBookmark key={bookmark.bookmark.documentId} title={bookmark.bookmark.title} createdAt={bookmark.bookmark.created} description={bookmark.bookmark.description} dataId={bookmark.bookmark.documentId} getListOfDocumentEmbeds={this.props.getListOfDocumentEmbeds}></PubBookmark>
         })
 
 
         return(
             <div>
-                <button onClick={this.props.getPublications} className='large ui button'>Get List Of Pubs</button>
                 <div>{pubBookmarks}</div>
+                <button onClick={this.props.getPublications} className='large ui button'>Get List Of Pubs</button>
                 <div>{pubFolders}</div>
             </div>
         );
