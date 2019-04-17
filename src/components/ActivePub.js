@@ -14,8 +14,6 @@ class ActivePub extends React.Component{
 
 
     makeASweetIframe = (data) =>{
-        console.log(data)
-
         if(!data.hasOwnProperty('dataConfigId')){
             return(<div>Nothing to see here</div>)
         }else{
@@ -24,6 +22,7 @@ class ActivePub extends React.Component{
     }
 
     render(){
+        console.log(this.props)
             return (           
                 <div>
                     {this.makeASweetIframe(this.props.activePub)}

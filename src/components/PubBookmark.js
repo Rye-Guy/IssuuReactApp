@@ -2,9 +2,11 @@ import React from 'react';
 
 
 class PubBookmark extends React.Component{
+    //this.setState({'activeDocument': this.props.bookmark})
     render(){
+
         return(
-            <div onClick={()=>this.props.getListOfDocumentEmbeds(this.props.dataId)} className='ui green button'>{this.props.title}</div>
+            <div onClick={()=> this.props.addClickedBookToState(this.props.bookmark)} className='ui green button'>{this.props.bookmark.title}</div>
         )
     }
 

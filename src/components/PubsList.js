@@ -9,7 +9,7 @@ class PubsList extends React.Component{
             return <PubFolder key={folder.folder.folderId} folderName={folder.folder.name} items={folder.folder.items} dataId={folder.folder.folderId} getListOfBookmarks={this.props.getListOfBookmarks}></PubFolder>
         })
         const pubBookmarks = this.props.bookmarks.map((bookmark)=>{
-            return <PubBookmark key={bookmark.bookmark.documentId} title={bookmark.bookmark.title} createdAt={bookmark.bookmark.created} description={bookmark.bookmark.description} dataId={bookmark.bookmark.documentId} getListOfDocumentEmbeds={this.props.getListOfDocumentEmbeds}></PubBookmark>
+            return <PubBookmark bookmark={bookmark.bookmark} key={bookmark.bookmark.documentId} addClickedBookToState={this.props.addClickedBookToState}></PubBookmark>
         })
 
 

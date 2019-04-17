@@ -11,11 +11,13 @@ class App extends Component {
   }
 
   getPublications = () => {
-    let additional_params = {
+
+    const additional_params = {
       format: 'json'
     }
-    let params = new api.create_base_parameters_obj('issuu.folders.list', api.api_key, additional_params)
-    let api_call = api.add_custom_params(params)
+
+    const params = new api.create_base_parameters_obj('issuu.folders.list', api.api_key, additional_params)
+    const api_call = api.add_custom_params(params)
     api.call_issuu(api_call).then((res) => {
       this.setState({'foldersOnIssuu': res.data.rsp._content.result._content})
       console.log(this.state)
@@ -26,34 +28,22 @@ class App extends Component {
   }
 
   getListOfBookmarks = (folderId) =>{
-    let additional_params = {
+    
+    const additional_params = {
       format: 'json',
       folderId: folderId
     }
-    let params = new api.create_base_parameters_obj('issuu.bookmarks.list', api.api_key, additional_params)
-    let api_call = api.add_custom_params(params)
+
+    const params = new api.create_base_parameters_obj('issuu.bookmarks.list', api.api_key, additional_params)
+    const api_call = api.add_custom_params(params)
     api.call_issuu(api_call).then((res)=>{
       this.setState({'bookmarksOnIssuu': res.data.rsp._content.result._content})
       console.log(this.state)
     }).catch((err)=>{console.log(err)})
   }
 
-  getListOfDocumentEmbeds = (documentId) =>{
-    let additional_params = {
-      format: 'json',
-      documentId: documentId
-    }
-    
-    let params = new api.create_base_parameters_obj('issuu.document_embeds.list', api.api_key, additional_params)
-    console.log(params)
-    const api_call = api.add_custom_params(params)
-    api.call_issuu(api_call).then((res)=>{
-      console.log(res)
-      this.setState({activeDocument: res.data.rsp._content.result._content[0].documentEmbed})
-      console.log(this.state)
-    }).catch((err)=>{
-        console.log(err)
-    })
+  addClickedBookToState = (book)=>{
+    this.setState({'activeDocument': book})
   }
 
   
@@ -61,7 +51,7 @@ class App extends Component {
     return (
       <div className="ui container">
           <ActivePub activePub={this.state.activeDocument}></ActivePub>
-          <PubsList getPublications={this.getPublications} folders={this.state.foldersOnIssuu} bookmarks={this.state.bookmarksOnIssuu} getListOfBookmarks={this.getListOfBookmarks} getListOfDocumentEmbeds={this.getListOfDocumentEmbeds}></PubsList>
+          <PubsList getPublications={this.getPublications} folders={this.state.foldersOnIssuu} bookmarks={this.state.bookmarksOnIssuu} getListOfBookmarks={this.getListOfBookmarks} addClickedBookToState={this.addClickedBookToState}></PubsList>
       </div>
     );
   }
