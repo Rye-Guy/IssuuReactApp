@@ -14,10 +14,14 @@ class ActivePub extends React.Component{
 
 
     makeASweetIframe = (data) =>{
-        if(!data.hasOwnProperty('dataConfigId')){
+        if(!this.props.activePub.name){
             return(<div>Nothing to see here</div>)
         }else{
-            return (<iframe ref={this.myIframe} src={`//e.issuu.com/embed.html#${data.dataConfigId}`}> </iframe>)
+            return (     
+                <div>
+                    <iframe ref={this.myIframe} style={{'overflow':'hidden','border': 'none', 'height': '30vh', 'width': '20vw'}} src={`https://e.issuu.com/embed.html?embedType=script&u=wall2wall&d=${this.props.activePub.name}&p=1`}></iframe>
+                </div>
+            )
         }
     }
 
