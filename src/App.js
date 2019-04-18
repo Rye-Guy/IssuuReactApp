@@ -27,6 +27,8 @@ class App extends Component {
     })
   }
 
+  
+
   getListOfBookmarks = (folderId) =>{
     
     const additional_params = {
@@ -44,10 +46,11 @@ class App extends Component {
 
   addClickedBookToState = (book)=>{
     this.setState({'activeDocument': book})
-  }
+  } 
 
   
   render() {
+    {this.getPublications()}
     return (
       <div className="ui container">
           <ActivePub activePub={this.state.activeDocument}></ActivePub>

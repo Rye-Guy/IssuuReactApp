@@ -13,13 +13,14 @@ class ActivePub extends React.Component{
     }
 
 
-    makeASweetIframe = (data) =>{
+    makeASweetIframe = () =>{
         if(!this.props.activePub.name){
-            return(<div>Nothing to see here</div>)
+            return(<div style={{'marginTop': '24px'}}></div>)
         }else{
             return (     
-                <div>
-                    <iframe ref={this.myIframe} style={{'overflow':'hidden','border': 'none', 'height': '30vh', 'width': '20vw'}} src={`https://e.issuu.com/embed.html?embedType=script&u=wall2wall&d=${this.props.activePub.name}&p=1`}></iframe>
+                <div style={{'marginTop': '24px'}}>
+                    <h4 className='ui horizontal divider header'>Active Publication <i className="leanpub icon"></i></h4>
+                    <iframe ref={this.myIframe} style={{'overflow':'hidden','border': 'none', 'height': '60vh', 'width': '100%'}} src={`https://e.issuu.com/embed.html?&u=wall2wall&d=${this.props.activePub.name}&p=1`}></iframe>
                 </div>
             )
         }
