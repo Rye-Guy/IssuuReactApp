@@ -5,7 +5,6 @@ import LoadingScreen from './LoadingScreen';
 import '../styles/style.css'
 class PubsList extends React.Component{
 
-
     doWeHaveData = (valueToCheck, data, h4value, iconType) =>{
         if(iconType !== 'folder' && valueToCheck === 0){
             return <div><h2 style={{'textAlign': 'center'}}>Please Pick A Stack!</h2></div>
@@ -22,12 +21,15 @@ class PubsList extends React.Component{
             )
         }
     }
+
+
+
     render(){   
         const pubFolders = this.props.folders.map((folder)=>{
             return <PubFolder key={folder.folder.folderId} folderName={folder.folder.name} items={folder.folder.items} dataId={folder.folder.folderId} getListOfBookmarks={this.props.getListOfBookmarks}></PubFolder>
         })
 
-
+        
 
         const pubBookmarks = this.props.bookmarks.map((bookmark)=>{
             return <PubBookmark bookmark={bookmark.bookmark} dataId={bookmark.bookmark.documentId} key={bookmark.bookmark.documentId} addClickedBookToState={this.props.addClickedBookToState}></PubBookmark>
@@ -35,7 +37,6 @@ class PubsList extends React.Component{
 
 
         return(
-            
             <div>
                 <div style={{'marginBottom': '24px', 'marginTop': '24px'}}>{this.doWeHaveData(this.props.bookmarks.length, pubBookmarks, 'Issuu Publications In Stack', 'book')}</div>
                 {this.doWeHaveData(this.props.folders.length, pubFolders, 'Issuu Stacks', 'folder')}
