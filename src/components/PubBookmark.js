@@ -6,7 +6,7 @@ class PubBookmark extends React.Component{
     render(){
 
         return(
-            <div onClick={()=> this.props.addClickedBookToState(this.props.bookmark)} className='ui green button'>{this.props.bookmark.title}</div>
+            <div onClick={()=> this.props.addClickedBookToState(this.props.bookmark)} className='ui green button item'>{this.props.bookmark.title}</div>
         )
     }
 

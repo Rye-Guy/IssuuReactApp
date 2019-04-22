@@ -13,7 +13,9 @@ class App extends Component {
   getPublications = () => {
 
     const additional_params = {
-      format: 'json'
+      format: 'json',
+      pageSize: 20,
+      folderSortBy: 'created'
     }
 
     const params = new api.create_base_parameters_obj('issuu.folders.list', api.api_key, additional_params)

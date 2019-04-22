@@ -2,7 +2,7 @@ import React from 'react';
 import PubFolder from './PubFolder';
 import PubBookmark from './PubBookmark';
 import LoadingScreen from './LoadingScreen';
-
+import '../styles/style.css'
 class PubsList extends React.Component{
 
 
@@ -17,7 +17,7 @@ class PubsList extends React.Component{
             return(
                 <div>
                     <h4 className='ui horizontal divider header'>{h4value}  <i className={iconType + " icon"}></i></h4>
-                    <div>{data}</div>
+                    <div className='list-items'>{data}</div>
                 </div>
             )
         }
