@@ -7,3 +7,7 @@
 .button.item{
     margin: 8px;
 }
+
+.ui.fluid.card{
+    width: 330px;
+}

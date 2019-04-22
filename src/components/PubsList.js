@@ -30,7 +30,7 @@ class PubsList extends React.Component{
 
 
         const pubBookmarks = this.props.bookmarks.map((bookmark)=>{
-            return <PubBookmark bookmark={bookmark.bookmark} key={bookmark.bookmark.documentId} addClickedBookToState={this.props.addClickedBookToState}></PubBookmark>
+            return <PubBookmark bookmark={bookmark.bookmark} dataId={bookmark.bookmark.documentId} key={bookmark.bookmark.documentId} addClickedBookToState={this.props.addClickedBookToState}></PubBookmark>
         })
 
 
